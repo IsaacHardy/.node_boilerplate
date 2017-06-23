@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Variables
 dir=~/.node_boilerplate
 
@@ -36,12 +38,19 @@ npm init
 
 npm install express path express-validator express-session body-parser mustache mustache-express --save
 
-cd $dirname
+echo -n "Would you like make this a git repo?"
+read response
+
+if [[ $response == "y" ]]; then
+  git init
+
+  git add .
+
+  git commit -m "initial commit"
+fi
 
 atom .
 
+# google-chrome --new-tab "http://localhost:8080"
+
 nodemon server.js
-
-sleep 3s
-
-/usr/bin/open -a "/Applications/Google Chrome.app" 'localhost:8080'
