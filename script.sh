@@ -34,8 +34,14 @@ cat $dir/main.css >> ./public/css/main.css
 
 npm init
 
-npm install express path express-validator express-session body-parser --save
+npm install express path express-validator express-session body-parser mustache mustache-express --save
 
 cd $dirname
 
+atom .
+
 nodemon server.js
+
+sleep 3s
+
+/usr/bin/open -a "/Applications/Google Chrome.app" 'localhost:8080'
