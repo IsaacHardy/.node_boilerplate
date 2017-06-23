@@ -1,5 +1,5 @@
 # Variables
-dir=~/TheIronYard/node_boilerplate
+dir=~/.node_boilerplate
 
 # Retrieve app name
 echo "Name your Node applicaiton folder: "
