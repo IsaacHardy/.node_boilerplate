@@ -34,23 +34,61 @@ cat $dir/tmp_server.js >> server.js
 cat $dir/index.mustache >> ./views/index.mustache
 cat $dir/main.css >> ./public/css/main.css
 
-npm init
+touch readme.md
+
+cat $dir/readme.txt >> readme.md
+
+touch Procfile
+
+cat $dir/Procfile.txt >> Procfile
+
+touch .gitignore
+
+cat $dir/git_ignore.txt >> .gitignore
+
+touch .env
+
+cat $dir/env.txt >> .env
+
+atom .
+
+npm init --yes
+
+json -I -f package.json -e 'this.engine={"node": "6.10.2"}'
+json -I -f package.json -e 'this.keywords=["node","heroku","express"]'
 
 npm install express path express-validator express-session body-parser mustache mustache-express --save
 
-echo -n "Would you like make this a git repo?"
+echo -n "Would you like make this a git repo? (Yes)"
 read response
 
-if [[ $response == "y" ]]; then
+if [[ $response == "y" ]] || [[ $response == "" ]]; then
   git init
 
   git add .
 
   git commit -m "initial commit"
+
+  echo -n "Paste Download URL for new Git Repository here: "
+
+  unset giturl
+  while [ -z ${giturl} ]; do
+       read giturl
+  done
+
+  git remote add origin $giturl
+
+  git push origin master
+
+  heroku login
+
+  heroku create $dirname-7232014
+
+  git push heroku master
+
+  heroku ps:scale web=1
+
+  heroku open
+
+  heroku local web
 fi
-
-atom .
-
-# google-chrome --new-tab "http://localhost:8080"
-
-nodemon server.js
