@@ -25,13 +25,19 @@ cd ..
 
 mkdir views
 cd views
+touch layout.mustache
 touch index.mustache
 cd ..
 
 mkdir routes
+cd routes
+touch index.js
+cd ..
 
 cat $dir/tmp_server.js >> server.js
 cat $dir/index.mustache >> ./views/index.mustache
+cat $dir/layout.mustache >> ./views/layout.mustache
+cat $dir/routes.js >> ./routes/index.js
 cat $dir/main.css >> ./public/css/main.css
 
 touch readme.md

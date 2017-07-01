@@ -4,12 +4,13 @@ const validator       = require("express-validator");
 const mustacheExpress = require("mustache-express");
 const path            = require("path");
 const session         = require("express-session");
+const routes          = require("./routes/index.js");
 
 // Initialze Express App
 const app = express();
 
 // Set Port
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 
 // Serve static files to server
 app.use(express.static(path.join(__dirname, "public")));
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.engine("mustache", mustacheExpress());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "mustache");
+app.set("layout", "layout");
 
 // Body parser and validator implementation
 app.use(bodyParser.json());
@@ -26,14 +28,12 @@ app.use(validator());
 
 // Initialize Express Session
 app.use(session({
-  secret: 'asdfasdf',
+  secret: 'thesecret',
   resave: false,
   saveUninitialized: false
 }));
 
-app.get("/", function(req, res) {
-  res.render("index");
-});
+app.use(routes);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
