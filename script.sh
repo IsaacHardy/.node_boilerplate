@@ -68,7 +68,7 @@ npm install express path express-validator express-session body-parser mustache 
 echo -n "Would you like make this a git repo? (Yes)"
 read response
 
-if [[ $response == "y" ]] || [[ $response == "" ]]; then
+if [[ $response == "y" ]] || [[ $response == "" ]] || [[ $response == "yes" ]]; then
   git init
 
   git add .
@@ -86,15 +86,22 @@ if [[ $response == "y" ]] || [[ $response == "" ]]; then
 
   git push origin master
 
-  heroku login
+  echo -n "Would you like to place this on heroku? (Yes)"
+  read heroku
 
-  heroku create $dirname-7232014
+  if [[ $heroku == "y" ]] || [[ $heroku == "" ]] || [[ $heroku == "yes" ]]; then
+    heroku login
 
-  git push heroku master
+    heroku create $dirname-7232014
 
-  heroku ps:scale web=1
+    git push heroku master
 
-  heroku open
+    heroku ps:scale web=1
 
-  heroku local web
+    heroku open
+
+    heroku local web
+  fi
 fi
+
+echo "---Complete---"
