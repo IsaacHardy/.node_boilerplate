@@ -63,7 +63,9 @@ npm init --yes
 json -I -f package.json -e 'this.engine={"node": "6.10.2"}'
 json -I -f package.json -e 'this.keywords=["node","heroku","express"]'
 
-npm install express path express-validator express-session body-parser mustache mustache-express --save
+npm install express path express-validator express-session body-parser mustache mustache-express pg sequelize --save
+
+sequelize init
 
 echo -n "Would you like make this a git repo? (Yes)"
 read response

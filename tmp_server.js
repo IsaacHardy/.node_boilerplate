@@ -33,8 +33,10 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// Routes
 app.use(routes);
 
+// Open Port
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
