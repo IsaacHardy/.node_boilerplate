@@ -67,6 +67,8 @@ npm install express path express-validator express-session body-parser mustache 
 
 sequelize init
 
+cat $dir/temp_config.json >> ./config/config.json
+
 echo -n "Would you like make this a git repo? (Yes)"
 read response
 
@@ -99,6 +101,12 @@ if [[ $response == "y" ]] || [[ $response == "" ]] || [[ $response == "yes" ]]; 
     git push heroku master
 
     heroku ps:scale web=1
+
+    heroku addons | grep -i POSTGRES
+
+    heroku addons:create heroku-postgresql:hobby-dev
+
+    heroku pg:wait
 
     heroku open
 
