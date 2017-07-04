@@ -67,7 +67,15 @@ npm install express path express-validator express-session body-parser mustache 
 
 sequelize init
 
-cat $dir/temp_config.json >> ./config/config.json
+cd config
+
+rm -f config.json
+
+cat $dir/tmp_config.json > config.json
+
+cd ..
+
+createdb $dirname-db
 
 echo -n "Would you like make this a git repo? (Yes)"
 read response
@@ -96,7 +104,7 @@ if [[ $response == "y" ]] || [[ $response == "" ]] || [[ $response == "yes" ]]; 
   if [[ $heroku == "y" ]] || [[ $heroku == "" ]] || [[ $heroku == "yes" ]]; then
     heroku login
 
-    heroku create $dirname-7232014
+    heroku create $dirname-8675309
 
     git push heroku master
 
@@ -114,4 +122,4 @@ if [[ $response == "y" ]] || [[ $response == "" ]] || [[ $response == "yes" ]]; 
   fi
 fi
 
-echo "---Complete---"
+echo "Complete."

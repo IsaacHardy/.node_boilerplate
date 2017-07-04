@@ -2,14 +2,14 @@
   "development": {
     "username": "IsaacHardy",
     "password": null,
-    "database": "example",
+    "database": "",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "IsaacHardy",
     "password": null,
-    "database": "example",
+    "database": "",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
